@@ -47,9 +47,13 @@ gem 'country_select'
 gem 'city-state'
 
 gem 'formtastic'
+gem 'formtastic-bootstrap'
+
 
 gem 'devise'
 gem 'devise-bootstrap-views'
+
+
 
 
 gem "therubyracer"

@@ -1,0 +1,30 @@
+<style type="text/css">
+  .form-group li{
+    list-style-type:none;
+  }
+</style>
+
+<form>
+<%= semantic_form_for @player, html:{class: "form-group"} do |f| %>
+  <div class="form-group">
+    <%= f.input :nome, input_html:{class: "form-control", placeholder: "Nome do Jogador"} %>
+
+    <%= f.input :birthdate, as: :string,input_html:{class: "form-control", placeholder: "Data de Nascimento"} %>
+
+    <%= f.input :cpf, input_html:{class: "form-control", placeholder: "CPF"} %>
+
+    <%= f.input :cell_phone, as: :string,input_html:{class: "form-control", placeholder: "Celular"} %>
+
+    <%= f.input :home_phone, as: :string,input_html:{class: "form-control", placeholder: "Residencial"} %>
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+
+    <%= f.input :position, input_html:{class: "form-control", placeholder: "Usar o Select2"} %>
+
+    <%= f.input :active, input_html:{class: "form-check-input"}, label: false %>
+
+    <%= f.input :descricao, input_html:{class: "form-control"} %>
+
+    <%= f.action :submit, button_html: {class: "btn btn-primary"} %>
+  </div>
+<% end %>
+

@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
   end
 
   def new
+    @player = Player.new
   end
 
   def edit
