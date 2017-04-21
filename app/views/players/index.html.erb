@@ -1,4 +1,43 @@
-<table class="table table-condensed">
+<style type="text/css">
+/*   .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+} */
+</style>
 
- 
-</table>
+<!-- <div class="container"> -->
+  <h2>Lista de Jogadores</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Celular</th>
+        <th>Posição</th>
+        <th>Em Atividade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @players.each do |player| %>
+        <tr>
+          <td><%= player.nome %></td>
+          <td><%= player.email %></td>
+          <td><%= player.cell_phone %></td>
+          <td><%= player.position %></td>
+          <td><%= player.active ? "Sim" : "Não" %></td>
+          <td>
+            <button class="btn-primary btn-circle">Mostrar</button>
+          </td>
+          <td><%= link_to "#" %></td>
+          <td><%= link_to "#" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<!-- </div> -->

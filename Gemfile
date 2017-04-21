@@ -53,6 +53,9 @@ gem 'formtastic-bootstrap'
 gem 'devise'
 gem 'devise-bootstrap-views'
 
+gem 'faker'
+gem 'cpf_faker'
+
 
 
 

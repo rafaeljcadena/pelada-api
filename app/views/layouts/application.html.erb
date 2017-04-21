@@ -48,8 +48,11 @@
         <%= link_to "Pelada Certa - API", players_path, class: "navbar-brand" %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Listar Jogadores", players_path if current_user %></li>
-            <li><%= link_to "Listar Peladas", "/path2"  %></li>
+            <% if current_user %>
+              <li><%= link_to "Listar Jogadores", players_path %></li>
+              <li><%= link_to "Listar Peladas", "/path2" %></li>
+              <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -61,16 +64,18 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Ferramentas</h3>
-            <ul class="nav nav-list">
-              <li><%= link_to "Criar Jogador", new_player_path  %></li>
-              <li><%= link_to "Criar Pelada", "/path2"  %></li>
-              <li><%= link_to "Gerir Adminstradores", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        <% if current_user %>
+          <div class="col-lg-3">
+            <div class="well sidebar-nav">
+              <h3>Ferramentas</h3>
+              <ul class="nav nav-list">
+                <li><%= link_to "Criar Jogador", new_player_path  %></li>
+                <li><%= link_to "Criar Pelada", "/path2"  %></li>
+                <li><%= link_to "Gerir Adminstradores", "/path3"  %></li>
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
+        <% end %>
       </div><!--/row-->
 
       <footer>
