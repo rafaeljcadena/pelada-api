@@ -1,1 +1,5 @@
-<%= render 'form.html.erb'%>
+<h1>New Player</h1>
+
+<%= render 'form', player: @player %>
+
+<%= link_to 'Back', players_path %>

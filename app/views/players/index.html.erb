@@ -9,7 +9,7 @@
         <th>Celular</th>
         <th>Posição</th>
         <th>Em Atividade</th>
-        <th>Ações</th>
+        <th colspan="3" style="text-align: center;">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -18,20 +18,20 @@
           <td><%= player.nome %></td>
           <td><%= player.email %></td>
           <td><%= player.cell_phone %></td>
-          <td><%= player.position %></td>
+          <td><%= t("model.player.positions.#{player.position}") %></td>
           <td><%= player.active ? "Sim" : "Não" %></td>
           <td>
-            <%= link_to "#", class: "btn btn-primary" do %>
+            <%= link_to player_path(player), class: "btn btn-primary btn-circle" do %>
               <i class="fa fa-male"></i>
             <% end %>
           </td>    
           <td>
-            <%= link_to edit_player_path(player), class: "btn btn-warning" do %>
+            <%= link_to edit_player_path(player), class: "btn btn-warning btn-circle" do %>
               <i class="fa fa-edit"></i>
             <% end %>
           </td> 
           <td>
-            <%= link_to player_path(player), class: "btn btn-danger", method: :delete, data: {confirm: "Tem certeza?"} do %>
+            <%= link_to player_path(player), class: "btn btn-danger btn-circle", method: :delete, data: {confirm: "Tem certeza?"} do %>
               <i class="fa fa-trash-o"></i>
             <% end %>
           </td>       
@@ -40,4 +40,7 @@
       <% end %>
     </tbody>
   </table>
+    <div style="text-align: center;">
+      <%= will_paginate @players, renderer: BootstrapPagination::Rails, class: "pagination-lg", inner_window: 3 %>
+    </div>
 <!-- </div> -->

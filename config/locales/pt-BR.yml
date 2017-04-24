@@ -1,0 +1,10 @@
+pt-BR:
+  hello: "Olá Mundo!"
+  model:
+    player:
+      positions:
+        atacante: Atacante
+        goleiro: Goleiro
+        zagueiro: Zagueiro
+        lateral_esquerdo: Lateral Esquerdo
+        lateral_direito: Lateral Direito

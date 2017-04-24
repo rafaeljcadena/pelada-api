@@ -37,7 +37,11 @@
     <![endif]-->
   </head>
   <body>
-
+<style type="text/css">
+  body{
+    margin: 0px;
+  }
+</style>
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -50,7 +54,7 @@
           <ul class="nav navbar-nav">
             <% if current_user %>
               <li><%= link_to "Listar Jogadores", players_path %></li>
-              <li><%= link_to "Listar Peladas", "/path2" %></li>
+              <li><%= link_to "Listar Peladas", "#" %></li>
               <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
             <% end %>
           </ul>
@@ -69,8 +73,8 @@
               <h3>Ferramentas</h3>
               <ul class="nav nav-list">
                 <li><%= link_to "Criar Jogador", new_player_path  %></li>
-                <li><%= link_to "Criar Pelada", "/path2"  %></li>
-                <li><%= link_to "Gerir Adminstradores", "/path3"  %></li>
+                <li><%= link_to "Criar Pelada", "#"  %></li>
+                <li><%= link_to "Gerir Adminstradores", "#"  %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->

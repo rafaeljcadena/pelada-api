@@ -1,2 +1,42 @@
 <p id="notice"><%= notice %></p>
+<h3>Dados do jogador <%= @player.nome %></h3>
+<table class="table">
+	<tr>
+		<th>Nome:</th>
+		<td><%= @player.nome %></td>
+	</tr>
 
+	<tr>
+		<th>Email:</th>
+		<td><%= @player.email %></td>
+	</tr>
+
+	<tr>
+		<th>Celular:</th>
+		<td><%= @player.cell_phone %></td>
+	</tr>
+
+	<tr>
+		<th>Telefone - Residência:</th>
+		<td><%= @player.home_phone %></td>
+	</tr>
+
+	<tr>
+		<th>Posição:</th>
+		<td><%= t("model.player.positions.#{@player.position}") %></td>
+	</tr>
+
+	<tr>
+		<th>Em Atividade:</th>
+		<td><%= @player.active ? "Sim" : "Não" %></td>
+	</tr>
+
+	<tr>
+		<th>Descrição:</th>
+		<td><%= @player.descricao %></td>
+	</tr>
+
+
+</table>
+
+<%= link_to 'Editar', edit_player_path(@player), class: "btn btn-warning" %> <%= link_to 'Back', players_path, class: "btn btn-default" %>
