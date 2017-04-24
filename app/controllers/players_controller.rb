@@ -14,7 +14,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.find(params[:id])
+    @player = Player.new(player_params)
     respond_to do |format|
       if @player.save
         format.html { redirect_to player_path, notice: "#{t('activerecord.models.player.one')} criado com sucesso" }
@@ -43,6 +43,7 @@ class PlayersController < ApplicationController
   end
 
   def destroy
+    @player = Player.find(params[:id])
     @player.destroy
     respond_to do |format|
       format.html { redirect_to :back }
