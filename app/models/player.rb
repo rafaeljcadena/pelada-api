@@ -3,7 +3,7 @@ class Player < ActiveRecord::Base
 	# validates :nome, :birthdate, :cpf, :descricao, :active, :position, :cell_phone, :home_phone, presence: true
 
 	@@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
-	def positions
+	def self.positions
 		@@positions
 	end
 end

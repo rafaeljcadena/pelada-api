@@ -9,7 +9,7 @@ namespace :utils do
   			cpf: Faker::CPF.pretty,
   			descricao: Faker::Lorem.paragraph(2),
   			active: [true, false].sample,
-  			position: "posição não definida",
+  			position: Player.positions.sample,
   			cell_phone: Faker::PhoneNumber.cell_phone,
   			home_phone: Faker::PhoneNumber.phone_number,
   			email: Faker::Internet.safe_email
