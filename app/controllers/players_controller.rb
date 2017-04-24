@@ -17,7 +17,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
     respond_to do |format|
       if @player.save
-        format.html { redirect_to player_path, notice: "#{t('activerecord.models.player.one')} criado com sucesso" }
+        format.html { redirect_to players_path, notice: "#{t('activerecord.models.player.one')} criado com sucesso" }
         format.json { render action: 'index', status: :created, location: @player }
       else
         format.html { render action: 'new' }
@@ -27,13 +27,14 @@ class PlayersController < ApplicationController
   end
 
   def show
+    @player = Player.find(params[:id])
   end
 
   def update
     @player = Player.find(params[:id])
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to player_path, notice: "#{t('activerecord.models.player.one')} atualizado com sucesso." }
+        format.html { redirect_to players_path, notice: "#{t('activerecord.models.player.one')} atualizado com sucesso." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
