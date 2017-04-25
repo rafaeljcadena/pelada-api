@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rails-assets-jquery', source: 'https://rails-assets.org'
+
 gem 'bootstrap_sb_admin_base_v2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -21,8 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-ui-rails'
+# gem 'jquery-ui-rails'
 
+gem "select2-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
