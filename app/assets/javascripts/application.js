@@ -13,6 +13,10 @@
 //= require bootstrap
 //= require jquery
 //= require jquery_ujs
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 //= require bootstrap_sb_admin_base_v2
 //= require select2
 //= require turbolinks
