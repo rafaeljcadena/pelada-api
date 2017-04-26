@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :is_active?, only: [:create, :update]
 
   # GET /players
   # GET /players.json
@@ -26,6 +27,8 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
 
+    byebug if Rails.env == "development"
+    
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
@@ -65,6 +68,10 @@ class PlayersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
+    end
+
+    def is_active?
+      params[:player][:active] = params[:player][:active] == "1"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
