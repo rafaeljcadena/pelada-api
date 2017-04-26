@@ -28,7 +28,9 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $("#position_select").select2();
+  $("#position_select").select2(
+    {placeholder: "Selecione a posição" } 
+    );
 });
 $('#player_birthdate').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
 </script>
