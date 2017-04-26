@@ -9,7 +9,7 @@
     <%= f.input :nome, input_html:{class: "form-control", placeholder: "Nome do Jogador"} %>
     <%= f.input :email, input_html:{class: "form-control", placeholder: "E-mail do Jogador"} %>
 
-    <%= f.input :birthdate, as: :string, input_html:{class: "form-control", placeholder: "Data de Nascimento"} %>
+    <%= f.input :birthdate, as: :string, input_html:{ data:{"inputmask" => "'alias': 'date', 'showMaskOnHover':false"}, class: "form-control", placeholder: "Data de Nascimento"} %>
 
     <%= f.input :cpf, input_html:{class: "form-control", placeholder: "CPF"} %>
 
@@ -17,7 +17,7 @@
 
     <%= f.input :home_phone, as: :string,input_html:{class: "form-control", placeholder: "Residencial"} %>
 
-    <%= f.input :position, collection: Player.positions.map{|p| [t("model.player.positions.#{p}"), p]}, input_html:{class: "form-control", placeholder: "Usar o Select2", id: "position_select"} %>
+    <%= f.input :position, input_html:{class: "form-control", placeholder: "Usar o Select2"} %>
 
     <%= f.input :active, input_html:{class: "form-check-input"}, label: false %>
 
@@ -27,15 +27,13 @@
   </div>
 <% end %>
 
+<<<<<<< Updated upstream
+=======
 <script type="text/javascript">
 $(document).ready(function() {
-
-});
-
-$(function() {
-  // $("#position_select").select2({
-  //   placeholder: "Selecione a Posição"
-  // });
-  $('#player_birthdate').inputmask('dd/mm/yyyy');
+  $("#position_select").select2({
+    placeholder: "Selecione a Posição"
+  });
 });
 </script>
+>>>>>>> Stashed changes

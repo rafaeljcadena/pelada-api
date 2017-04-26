@@ -11,6 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+<<<<<<< Updated upstream
+//= require jquery_ujs
+//= require jquery-ui
+=======
 //= require inputmask
 //= require jquery.inputmask
 //= require inputmask.extensions
@@ -18,7 +22,7 @@
 //= require inputmask.phone.extensions
 //= require inputmask.numeric.extensions
 //= require inputmask.regex.extensions
+>>>>>>> Stashed changes
 //= require bootstrap_sb_admin_base_v2
-//= require select2
 //= require turbolinks
 //= require_tree .
