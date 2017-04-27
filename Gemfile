@@ -55,6 +55,7 @@ gem 'aws-sdk', '< 2.0'
 
 gem "cpf_cnpj"
 gem 'email_validator'
+gem 'validates_email_format_of'
 
 gem 'truncate_html'
 
