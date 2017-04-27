@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20170426020351) do
     t.date     "birthdate"
     t.string   "cpf"
     t.text     "descricao"
-    t.boolean  "active",     default: false
+    t.boolean  "active"
     t.string   "position"
     t.string   "cell_phone"
     t.string   "home_phone"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "email"
   end
 
