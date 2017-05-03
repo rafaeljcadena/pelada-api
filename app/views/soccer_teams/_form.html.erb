@@ -1,0 +1,24 @@
+<style type="text/css">
+  .form-group li{
+    list-style-type:none;
+  }
+</style>
+
+<%= semantic_form_for @soccer_team, html:{class: "form-group"} do |f| %>
+  <div class="form-group">
+    <%= f.input :team_name, input_html:{class: "form-control", placeholder: "Nome do Time"} %>
+
+    <%= f.input :vacancy_players, as: :string,input_html:{class: "form-control", placeholder: "Vagas disponíveis"} %>
+
+    <%= f.input :open_for_subscriptions, as: :boolean, input_html:{} %>
+    <br>
+    <%= f.action :submit, label: "Criar Time", as: :button, button_html: {class: "btn btn-success", id: "btn_success", style: "padding: 8px;"} %>
+    <%= link_to 'Back', players_path, class: "btn btn-default" %>
+
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+});
+</script>

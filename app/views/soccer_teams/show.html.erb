@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+<h1>Dados do Time <%= @soccer_team.team_name %></h1>
+<table class="table">
+	<tr>
+		<th>Nome do Time:</th>
+		<td><%= @soccer_team.team_name %></td>
+	</tr>
+
+	<tr>
+		<th>Saldo de Gols:</th>
+		<td><%= @soccer_team.goals_scored %></td>
+	</tr>
+
+	<tr>
+		<th>Cartões Vermelho:</th>
+		<td><%= @soccer_team.red_cards %></td>
+	</tr>
+
+	<tr>
+		<th>Cartões Amarelo:</th>
+		<td><%= @soccer_team.yellow_cards %></td>
+	</tr>
+
+	<tr>
+		<th>Vagas Disponíveis:</th>
+		<td><%= @soccer_team.vacancy_players %></td>
+	</tr>
+
+	<tr>
+		<th>Aberto para inscrições:</th>
+		<td><%= @soccer_team.open_for_subscriptions ? "Sim" : "Não" %></td>
+	</tr>
+</table>
+
+<%= link_to 'Editar', edit_soccer_team_path(@soccer_team), class: "btn btn-warning" %> <%= link_to 'Back', soccer_teams_path, class: "btn btn-default" %>
+
+<hr>
+
+
+<!-- <div class="container"> -->
+  <h2>Jogadores Participantes</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Celular</th>
+        <th>Posição</th>
+        <th>Em Atividade</th>
+        <th colspan="3" style="text-align: center;">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @players.each do |player| %>
+        <tr>
+          <td><%= player.nome %></td>
+          <td><%= player.email %></td>
+          <td><%= player.cell_phone %></td>
+          <td><%= t("model.player.positions.#{player.position}") %></td>
+          <td><%= player.active ? "Sim" : "Não" %></td>
+          <td>
+            <%= link_to player_path(player), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-male"></i>
+            <% end %>
+          </td>    
+          <td>
+            <%= link_to edit_player_path(player), class: "btn btn-warning btn-circle" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          </td> 
+          <td>
+            <%= link_to player_path(player), class: "btn btn-danger btn-circle", method: :delete, data: {confirm: "Tem certeza?"} do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>       
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    <div style="text-align: center;">
+      <%= will_paginate @players, renderer: BootstrapPagination::Rails, class: "pagination-lg", inner_window: 3 %>
+    </div>
+<!-- </div> -->
