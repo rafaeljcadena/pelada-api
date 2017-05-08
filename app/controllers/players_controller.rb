@@ -19,6 +19,7 @@ class PlayersController < ApplicationController
   # GET /players/new
   def new
     @player = Player.new
+    @player.build_address
   end
 
   # GET /players/1/edit
@@ -73,6 +74,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:nome, :birthdate, :email, :cpf, :descricao, :active, :position, :cell_phone, :home_phone)
+      params.require(:player).permit(:nome, :birthdate, :email, :cpf, :descricao, :active, :position, :cell_phone, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
     end
 end
