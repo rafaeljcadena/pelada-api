@@ -4,13 +4,20 @@ class SoccerTeamsController < ApplicationController
   # GET /soccer_teams
   # GET /soccer_teams.json
   def index
-    @soccer_teams = SoccerTeam.all.paginate(page: params[:page], per_page: 15)
+    @soccer_teams = SoccerTeam.all.order(:team_name).paginate(page: params[:page], per_page: 15)
   end
 
   # GET /soccer_teams/1
   # GET /soccer_teams/1.json
   def show
-    @players = Player.all.paginate(page: params[:page], per_page: 15)
+
+    if from_soccer_team?
+      player = @soccer_team.players.where(id: params[:player_id])
+      player.update(soccer_team_id: nil)
+      player.update(active: false)
+    end
+    @players = @soccer_team.players.paginate(page: params[:page], per_page: 15).order(:nome)
+
   end
 
   # GET /soccer_teams/new
@@ -66,6 +73,10 @@ class SoccerTeamsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_soccer_team
       @soccer_team = SoccerTeam.find(params[:id])
+    end
+
+    def from_soccer_team?
+      return params[:from_soccer_team] == "true"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

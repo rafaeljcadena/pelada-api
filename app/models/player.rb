@@ -1,4 +1,5 @@
 class Player < ActiveRecord::Base
+	belongs_to :soccer_team
 	has_one :address, dependent: :destroy
 	accepts_nested_attributes_for :address
 

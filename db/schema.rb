@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508041012) do
+ActiveRecord::Schema.define(version: 20170510201429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(version: 20170508041012) do
     t.string   "position"
     t.string   "cell_phone"
     t.string   "home_phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "email"
+    t.integer  "soccer_team_id"
+    t.index ["soccer_team_id"], name: "index_players_on_soccer_team_id", using: :btree
   end
 
   create_table "soccer_teams", force: :cascade do |t|
@@ -71,4 +73,5 @@ ActiveRecord::Schema.define(version: 20170508041012) do
   end
 
   add_foreign_key "addresses", "players"
+  add_foreign_key "players", "soccer_teams"
 end
