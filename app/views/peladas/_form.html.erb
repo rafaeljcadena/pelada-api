@@ -1,0 +1,24 @@
+<style type="text/css">
+    .button_action{
+    list-style-type:none;
+  }
+    .form-group li{
+    list-style-type:none;
+  }
+</style>
+
+<%= semantic_form_for @pelada do |f| %>
+    <%= f.input :title %>
+    <%= f.input :begin, as: :string %>
+
+    <%= f.action :submit, as: :button, button_html: {class: "btn btn-success", id: "btn_success", style: "padding: 6.8  px;"} %>
+    <%= link_to 'Back', peladas_path, class: "btn btn-success", id: "" %>
+<% end %>
+
+
+
+<script type="text/javascript">
+$('#pelada_begin').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
+	
+</script>
+	

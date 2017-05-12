@@ -9,4 +9,7 @@ pt-BR:
         lateral_esquerdo: Lateral Esquerdo
         lateral_direito: Lateral Direito
     soccer_team:
+    pelada:
+      title: Título
+      begin: Início
       

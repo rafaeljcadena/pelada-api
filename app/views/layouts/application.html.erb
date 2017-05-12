@@ -54,7 +54,7 @@
           <ul class="nav navbar-nav">
             <% if current_user %>
               <li><%= link_to "Listar Jogadores", players_path %></li>
-              <li><%= link_to "Listar Peladas", "#" %></li>
+              <li><%= link_to "Listar Peladas", peladas_path %></li>
               <li><%= link_to "Listar Times", soccer_teams_path %></li>
               <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
             <% end %>
@@ -75,7 +75,7 @@
               <ul class="nav nav-list">
                 <li><%= link_to "Criar Jogador", new_player_path  %></li>
                 <li><%= link_to "Criar Time", new_soccer_team_path  %></li>
-                <li><%= link_to "Criar Pelada", '#'  %></li>
+                <li><%= link_to "Criar Pelada", new_pelada_path  %></li>
                 <li><%= link_to "Gerir Adminstradores", "#"  %></li>
               </ul>
             </div><!--/.well -->

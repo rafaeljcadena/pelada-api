@@ -1,0 +1,2 @@
+module PeladasHelper
+end

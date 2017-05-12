@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
 	belongs_to :soccer_team
 	has_one :address, dependent: :destroy
+	has_many :peladas
 	accepts_nested_attributes_for :address
 
 	validates :nome, :birthdate, :cpf, :descricao, :position, :cell_phone, :home_phone, presence: true

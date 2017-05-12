@@ -8,13 +8,13 @@ namespace :utils do
   			birthdate: Faker::Date.between_except(20.year.ago, 1.year.from_now, Date.today),
   			cpf: Faker::CPF.pretty,
   			descricao: Faker::Lorem.paragraph(2),
-  			active: [true, false].sample,
+  			active: false,
   			position: Player.positions.sample,
   			cell_phone: Faker::PhoneNumber.cell_phone,
   			home_phone: Faker::PhoneNumber.phone_number,
   			email: Faker::Internet.safe_email
 			)
+
   	end
   end
-
 end
