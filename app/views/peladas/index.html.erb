@@ -1,15 +1,12 @@
 
 <!-- <div class="container"> -->
-  <h2>Lista de Times</h2>
+  <h2>Lista de Peladas</h2>
   <table class="table table-striped">
     <thead>
       <tr>
         <!-- <th>Posição</th> -->
         <th>Título</th>
         <th>Início</th>
-        <th>Cartões Amarelos</th>
-        <th>Cartões Vermelhos</th>
-        <th>Faltas Cometidas</th>
         <th>Saldo de Gols</th>
         <th colspan="3" style="text-align: center;">Ações</th>
       </tr>
@@ -19,9 +16,6 @@
         <tr>
           <td><%= pelada.title %></td>
           <td><%= l pelada.begin.to_date %></td>
-          <td><%#= pelada.yellow_cards %></td>
-          <td><%#= pelada.red_cards %></td>
-          <td><%#= pelada.fouls_commited %></td>
           <td><%#= pelada.goals_scored %></td>
           <td>
             <%= link_to pelada_path(pelada), class: "btn btn-primary btn-circle" do %>

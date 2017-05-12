@@ -12,4 +12,6 @@ pt-BR:
     pelada:
       title: Título
       begin: Início
+      guest_id: Time Convidado
+      host_id: Time da Casa
       

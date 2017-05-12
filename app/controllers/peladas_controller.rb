@@ -69,6 +69,6 @@ class PeladasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pelada_params
-      params.require(:pelada).permit(:title, :begin)
+      params.require(:pelada).permit(:title, :begin, :guest_id, :host_id)
     end
 end

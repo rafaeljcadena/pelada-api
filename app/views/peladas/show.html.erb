@@ -1,14 +1,45 @@
 <p id="notice"><%= notice %></p>
+<h1>Dados da Pelada</h1>
+<table class="table">
+	<tr>
+		<th>Nome da Pelada:</th>
+		<td><%= @pelada.title %></td>
+	</tr>
 
-<p>
-  <strong>Title:</strong>
-  <%= @pelada.title %>
-</p>
+	<tr>
+		<th>Início:</th>
+		<td><%= l @pelada.begin.to_date %></td>
+	</tr>
 
-<p>
-  <strong>Begin:</strong>
-  <%= @pelada.begin %>
-</p>
+</table>
 
-<%= link_to 'Edit', edit_pelada_path(@pelada) %> |
-<%= link_to 'Back', peladas_path %>
+
+<hr>
+
+
+<!-- <div class="container"> -->
+  <h2>Times Participantes</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Gols</th>
+        <th colspan="3" style="text-align: center;">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @pelada.host.team_name %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><%= @pelada.guest.team_name %></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+    </tbody>
+  </table>
+<%= link_to 'Editar', edit_pelada_path(@pelada), class: "btn btn-warning" %> <%= link_to 'Back', peladas_path, class: "btn btn-default" %>
+<!-- </div> -->
