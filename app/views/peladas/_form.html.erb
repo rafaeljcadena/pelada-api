@@ -14,6 +14,9 @@
     <%= f.input :host_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "host_select"} %>
 
     <%= f.input :guest_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "guest_select"} %>
+    <%= f.input :address %>
+    <%= f.input :lat, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-85.05115", "v-max" => "85", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
+    <%= f.input :lng, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-180", "v-max" => "180", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
 
 
     <%= f.action :submit, as: :button, button_html: {class: "btn btn-success", id: "btn_success", style: "padding: 6.8  px;"} %>
@@ -36,13 +39,84 @@ $('#pelada_begin').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
 
 // }
 
-$(document).ready(function() {
-    $("#host_select").select2({placeholder: "Selecione o time" });
-    $("#guest_select").select2({placeholder: "Selecione o time" });
+var marker = null;
+var map = null;
+var icon = null;
+var geocoder = null;
 
-    // initializeMap();
-    var map = L.map('mapId').setView([-8.05, -34.9], 12);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+var address = null;
+
+function atualiza_mapa() {
+  txt_field = $("#pelada_address")[0];
+  geocoder.geocode( { 'address': txt_field.value}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      addMarker(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+    }
+  });
+  address = txt_field.value;
+}
+
+function updateMarker() {
+  if (marker != null)
+    map.removeLayer(marker);
+  marker = new L.marker([$("#pelada_lat").autoNumeric('get'), $("#pelada_lng").autoNumeric('get')], {icon: icon}).addTo(map);
+}
+
+function addMarker(lat, lng) {
+  if (marker != null)
+    map.removeLayer(marker);
+  marker = new L.marker([lat, lng], {icon: icon}).addTo(map);
+
+  map.panTo(new L.LatLng(lat, lng));
+
+  $("#pelada_lat").autoNumeric('set', lat);
+  $("#pelada_lat").focus();
+  $("#pelada_lng").autoNumeric('set', lng);
+  $("#pelada_lng").focus();
+  $("#pelada_lng").blur();
+}
+
+$(function () {
+  geocoder = new google.maps.Geocoder();
+
+  icon = L.icon({
+    iconUrl: '/img/marker-icon.png',
+    iconRetinaUrl: '/img/marker-icon-2x.png',
+    shadowUrl: '/img/marker-shadow.png',
+
+    iconSize:     [25, 41], // size of the icon
+    shadowSize:   [41, 41], // size of the shadow
+    iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
+    shadowAnchor: [12, 41],  // the same for the shadow
+  });
+  map = L.map('map').setView([-22.937960, -43.247549], 12);
+  map.scrollWheelZoom.disable();
+
+  // L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+  //   attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  //   subdomains: '1234'
+  // }).addTo(map);
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  if ($("#pelada_lat").val() != '' && $("#pelada_lng").val() != '')
+  addMarker($("#pelada_lat").autoNumeric('get'), $("#pelada_lng").autoNumeric('get'));
+
+  map.on('click', function(e){
+    addMarker(e.latlng.lat, e.latlng.lng);
+  });
+
+  updateMarker();
+})
+
+$(document).ready(function() {
+  $("#host_select").select2({placeholder: "Selecione o time" });
+  $("#guest_select").select2({placeholder: "Selecione o time" });
+
+  // initializeMap();
+  var map = L.map('mapId').setView([-8.05, -34.9], 12);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 });
 </script>
