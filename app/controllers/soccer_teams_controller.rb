@@ -16,6 +16,7 @@ class SoccerTeamsController < ApplicationController
       player.update(soccer_team_id: nil)
       player.update(active: false)
     end
+    
     @players = @soccer_team.players.paginate(page: params[:page], per_page: 15).order(:nome)
 
   end
