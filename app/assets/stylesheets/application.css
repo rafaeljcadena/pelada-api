@@ -14,6 +14,7 @@
  *= require devise_bootstrap_views
  *= require formtastic
  *= require font-awesome
+ *= require leaflet
  *= require bootstrap_sb_admin_base_v2
  *= require select2
  *= require_tree .

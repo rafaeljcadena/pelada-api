@@ -20,13 +20,21 @@
     <%= link_to 'Back', peladas_path, class: "btn btn-success", id: "" %>
 <% end %>
 
-
+<div id="mapip" style="height: 200px; width: 300px;"></div>
 
 <script type="text/javascript">
 $('#pelada_begin').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
 
+    var mymap = L.map('#mapid').setView([51.505, -0.09], 13);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18
+}).addTo(mymap);
+
+
 $(document).ready(function() {
     $("#host_select").select2({placeholder: "Selecione o time" });
     $("#guest_select").select2({placeholder: "Selecione o time" });
+
 });
 </script>

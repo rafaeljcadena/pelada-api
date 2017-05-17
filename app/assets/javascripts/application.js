@@ -16,6 +16,7 @@
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
+//= require leaflet
 //= require bootstrap
 //= require bootstrap_sb_admin_base_v2
 //= require select2
