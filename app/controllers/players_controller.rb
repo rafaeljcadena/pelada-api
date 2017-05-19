@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_available_soccer_teams, only: [:show, :edit, :update, :destroy]
+
 
   # GET /players
   # GET /players.json
@@ -72,8 +74,14 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
 
+    def set_available_soccer_teams
+      @soccer_teams = SoccerTeam.where('vacancy_players > ?', 0)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:nome, :birthdate, :email, :cpf, :descricao, :active, :position, :cell_phone, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
+      params.require(:player).permit(:nome, :birthdate, :email, :cpf, :descricao, :active, :position, :cell_phone, :soccer_team_id, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
     end
+
+
 end

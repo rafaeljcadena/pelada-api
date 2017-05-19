@@ -13,8 +13,7 @@ class SoccerTeamsController < ApplicationController
 
     if from_soccer_team?
       player = @soccer_team.players.where(id: params[:player_id])
-      player.update(soccer_team_id: nil)
-      player.update(active: false)
+      player.update(soccer_team_id: nil, active: false)
     end
     
     @players = @soccer_team.players.paginate(page: params[:page], per_page: 15).order(:nome)

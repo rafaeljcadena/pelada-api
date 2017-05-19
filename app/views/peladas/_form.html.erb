@@ -7,14 +7,14 @@
   }
 </style>
 
-<%= semantic_form_for @pelada do |f| %>
+<%= semantic_form_for Pelada.new do |f| %>
     <%= f.input :title %>
     <%= f.input :begin, as: :string %>
 
     <%= f.input :host_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "host_select"} %>
 
     <%= f.input :guest_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "guest_select"} %>
-    <%= f.input :address %>
+    <%= f.input :address, as: :string, input_html:{onchange: "javascript:atualiza_mapa();", id: "pelada_address"} %>
     <%= f.input :lat, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-85.05115", "v-max" => "85", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
     <%= f.input :lng, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-180", "v-max" => "180", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
 
@@ -25,19 +25,21 @@
 
 <div id="mapId" style="width: auto; height: 600px; margin-top: 20px;"></div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtGPR0kEoNEGf_KlmJbA9pEalgyxXhS8Y">
+</script>
 <script type="text/javascript">
 $('#pelada_begin').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
-// function initializeMap() {
+function initializeMap() {
 
-//   map = L.map('map', { zoomControl: false }).setView([-8.05, -34.9], 12);
-//   new L.Control.Zoom({ position: 'topright' }).addTo(map);
+  map = L.map('map', { zoomControl: false }).setView([-8.05, -34.9], 12);
+  new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
-//   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//   }).addTo(map);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-// }
+}
 
 var marker = null;
 var map = null;
@@ -48,6 +50,7 @@ var address = null;
 
 function atualiza_mapa() {
   txt_field = $("#pelada_address")[0];
+  // geocoder = new google.maps.Geocoder();
   geocoder.geocode( { 'address': txt_field.value}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       addMarker(results[0].geometry.location.lat(), results[0].geometry.location.lng());
@@ -59,7 +62,7 @@ function atualiza_mapa() {
 function updateMarker() {
   if (marker != null)
     map.removeLayer(marker);
-  marker = new L.marker([$("#pelada_lat").autoNumeric('get'), $("#pelada_lng").autoNumeric('get')], {icon: icon}).addTo(map);
+  marker = new L.marker([$("#pelada_lat").val(), $("#pelada_lng").val()], {icon: icon}).addTo(map);
 }
 
 function addMarker(lat, lng) {
@@ -69,9 +72,9 @@ function addMarker(lat, lng) {
 
   map.panTo(new L.LatLng(lat, lng));
 
-  $("#pelada_lat").autoNumeric('set', lat);
+  $("#pelada_lat").val(lat);
   $("#pelada_lat").focus();
-  $("#pelada_lng").autoNumeric('set', lng);
+  $("#pelada_lng").val(lng);
   $("#pelada_lng").focus();
   $("#pelada_lng").blur();
 }
@@ -89,8 +92,8 @@ $(function () {
     iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
     shadowAnchor: [12, 41],  // the same for the shadow
   });
-  map = L.map('map').setView([-22.937960, -43.247549], 12);
-  map.scrollWheelZoom.disable();
+  map = L.map('mapId').setView([-8.05, -34.9], 12);
+  // map.scrollWheelZoom.disable();
 
   // L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
   //   attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -108,15 +111,15 @@ $(function () {
   });
 
   updateMarker();
-})
+});
 
 $(document).ready(function() {
   $("#host_select").select2({placeholder: "Selecione o time" });
   $("#guest_select").select2({placeholder: "Selecione o time" });
 
-  // initializeMap();
-  var map = L.map('mapId').setView([-8.05, -34.9], 12);
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+  initializeMap();
+  // var map = L.map('mapId').setView([-8.05, -34.9], 12);
+  // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 });
 </script>

@@ -26,10 +26,12 @@
 		<td><%= t("model.player.positions.#{@player.position}") %></td>
 	</tr>
 
-	<tr>
-		<th>Em Atividade:</th>
-		<td><%= @player.active ? "Sim" : "Não" %></td>
-	</tr>
+	<% if @player.active %>
+		<tr>
+			<th>Time atuante:</th>
+			<td><%= @player.soccer_team.team_name %></td>
+		</tr>
+	<% end %>
 
 	<tr>
 		<th>Descrição:</th>
