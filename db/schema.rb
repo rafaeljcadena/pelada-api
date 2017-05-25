@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517214345) do
+ActiveRecord::Schema.define(version: 20170525012532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,9 @@ ActiveRecord::Schema.define(version: 20170517214345) do
     t.integer  "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
     t.index ["player_id"], name: "index_addresses_on_player_id", using: :btree
-  end
-
-  create_table "pelada_soccer_teams", force: :cascade do |t|
-    t.integer  "pelada_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pelada_id"], name: "index_pelada_soccer_teams_on_pelada_id", using: :btree
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
   create_table "peladas", force: :cascade do |t|
@@ -89,11 +84,22 @@ ActiveRecord::Schema.define(version: 20170517214345) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "nome"
+    t.date     "birthdate"
+    t.string   "cpf"
+    t.text     "descricao"
+    t.boolean  "active"
+    t.string   "position"
+    t.string   "cell_phone"
+    t.string   "home_phone"
+    t.integer  "soccer_team_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["soccer_team_id"], name: "index_users_on_soccer_team_id", using: :btree
   end
 
   add_foreign_key "addresses", "players"
-  add_foreign_key "pelada_soccer_teams", "peladas"
+  add_foreign_key "addresses", "users"
   add_foreign_key "players", "soccer_teams"
+  add_foreign_key "users", "soccer_teams"
 end

@@ -26,6 +26,7 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'rails_12factor', group: :production
 
+gem 'oj'
 
 # gem 'jquery-ui-rails'
 

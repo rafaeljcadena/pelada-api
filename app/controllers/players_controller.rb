@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all.order(:nome).paginate(page: params[:page], per_page: 15)
+    
   end
 
   # GET /players/1
@@ -22,6 +23,7 @@ class PlayersController < ApplicationController
   def new
     @player = Player.new
     @player.build_address
+    @soccer_teams = SoccerTeam.all
   end
 
   # GET /players/1/edit

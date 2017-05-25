@@ -6,20 +6,66 @@
   <div class="panel-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+        <%= f.text_field :nome,  class: "form-control", placeholder: "Nome do Jogador" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :birthdate, class: "form-control", placeholder: "Data de Nascimento" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :cpf,  class: "form-control", placeholder: "CPF" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :cell_phone, as: :string, class: "form-control", placeholder: "Celular" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :home_phone, as: :string, class: "form-control", placeholder: "Residencial" %>
+      </div>
+
+
+      <%= f.fields_for :address do |address| %>
+
+      <div class="form-group">
+        <%= address.text_field :cep, class: "form-control", placeholder: "CEP" %>
       </div>
       <div class="form-group">
-        <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', default: "leave blank if you don't want to change it") %>)</i>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        <%= address.text_field :street, class: "form-control", placeholder: "Rua" %>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control'  %>
+        <%= address.text_field :complement, class: "form-control", placeholder: "Complemento" %>
       </div>
       <div class="form-group">
-        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', default: 'we need your current password to confirm your changes') %>)</i>
-        <%= f.password_field :current_password, class: 'form-control' %>
+        <%= address.text_field :city, class: "form-control", placeholder: "Cidade" %>
+      </div>
+      <div class="form-group">
+        <%= address.text_field :state, class: "form-control", placeholder: "Estado" %>
+      </div>
+
+      <% end %>
+      <div class="form-group">
+        <%#= f.select :soccer_team_id, collection: @soccer_teams.map{|p| [p.team_name, p.id]}, class: "form-control", id: "soccer_team_select" %>
+      </div>        
+      <div class="form-group">
+        <%#= f.select :position, collection: Player.positions.map{|p| [t("model.player.positions.#{p}"), p]}, class: "form-control", placeholder: "Usar o Select2", id: "position_select" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :descricao, class: "form-control", placeholder: "Descrição" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "E-mail" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Password Confirmation"  %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :current_password, class: 'form-control', placeholder: "Current Password" %>
       </div>
       <%= f.submit t('.update', default: 'Update'), class: 'btn btn-primary' %>
     <% end %>
@@ -29,3 +75,18 @@
 <p><%= t('.unhappy', default: 'Unhappy') %>? <%= link_to t('.cancel_my_account', default: 'Cancel my account'), registration_path(resource_name), data: { confirm: t('.are_you_sure', default: "Are you sure?") }, method: :delete %>.</p>
 
 <%= link_to t('.back', default: 'Back'), :back %>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#position_select").select2(
+    {placeholder: "Selecione a posição" } 
+    );
+  $("#soccer_team_select").select2(
+    {placeholder: "Selecione o time" } 
+    );
+});
+$('#user_birthdate').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
+</script>
+
