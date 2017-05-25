@@ -12,11 +12,11 @@ class SoccerTeamsController < ApplicationController
   def show
 
     if from_soccer_team?
-      player = @soccer_team.players.where(id: params[:player_id])
-      player.update(soccer_team_id: nil, active: false)
+      user = @soccer_team.users.where(id: params[:user_id])
+      user.update(soccer_team_id: nil, active: false)
     end
     
-    @players = @soccer_team.players.paginate(page: params[:page], per_page: 15).order(:nome)
+    @users = @soccer_team.users.paginate(page: params[:page], per_page: 15).order(:nome)
 
   end
 
@@ -81,6 +81,6 @@ class SoccerTeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def soccer_team_params
-      params.require(:soccer_team).permit(:team_name, :vacancy_players, :open_for_subscriptions)
+      params.require(:soccer_team).permit(:team_name, :vacancy_users, :open_for_subscriptions)
     end
 end
