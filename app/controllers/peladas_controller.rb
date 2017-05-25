@@ -5,11 +5,19 @@ class PeladasController < ApplicationController
   # GET /peladas.json
   def index
     @peladas = Pelada.all
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@peladas.as_json(), mode: :compat)}
+    end
   end
 
   # GET /peladas/1
   # GET /peladas/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@pelada.as_json(), mode: :compat)}
+    end
   end
 
   # GET /peladas/new

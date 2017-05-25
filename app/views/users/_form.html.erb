@@ -21,11 +21,11 @@
 
     <%= f.semantic_fields_for :address do |address| %>
 
-    <%= address.input :cep, as: :string,input_html:{class: "form-control", placeholder: "CEP"} %>
-    <%= address.input :street, as: :string,input_html:{class: "form-control", placeholder: "Rua"} %>
-    <%= address.input :complement, as: :string,input_html:{class: "form-control", placeholder: "Complemento"} %>
-    <%= address.input :city, as: :string,input_html:{class: "form-control", placeholder: "Cidade"} %>
-    <%= address.input :state, as: :string,input_html:{class: "form-control", placeholder: "Estado"} %>
+    <%= address.input :cep, as: :string, input_html:{class: "form-control", placeholder: "CEP"} %>
+    <%= address.input :street, as: :string, input_html:{class: "form-control", placeholder: "Rua"} %>
+    <%= address.input :complement, as: :string, input_html:{class: "form-control", placeholder: "Complemento"} %>
+    <%= address.input :city, as: :string, input_html:{class: "form-control", placeholder: "Cidade"} %>
+    <%= address.input :state, as: :string, input_html:{class: "form-control", placeholder: "Estado"} %>
 
     <% end %>
     <%= f.input :soccer_team_id, as: :select, collection: @soccer_teams.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "soccer_team_select"} %>

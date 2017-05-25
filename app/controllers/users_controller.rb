@@ -1,25 +1,38 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_available_soccer_teams, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all.order(:nome).paginate(page: params[:page], per_page: 15)
+
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@users.as_json(), mode: :compat)}
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@user.as_json(), mode: :compat)}
+    end
   end
 
   # GET /users/new
   def new
     @user = User.new
+    @user.build_address
+    @soccer_teams = SoccerTeam.all
   end
 
   # GET /users/1/edit
   def edit
+    @user.build_address
     @soccer_teams = SoccerTeam.all
   end
 
