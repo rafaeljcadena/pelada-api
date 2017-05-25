@@ -1,0 +1,13 @@
+<h1>Minha Conta</h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Back', users_path, class: "btn btn-default", style: "padding: 8px;" %>
+
+<br><br>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('btn_success').css('padding', '7px 8px');	
+	});
+</script>

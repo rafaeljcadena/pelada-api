@@ -1,0 +1,46 @@
+
+<!-- <div class="container"> -->
+  <h2>Lista de Jogadores</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Celular</th>
+        <th>Posição</th>
+        <th>Em Atividade</th>
+        <th colspan="3" style="text-align: center;">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.nome %></td>
+          <td><%= user.email %></td>
+          <td><%= user.cell_phone %></td>
+          <td><%= t("model.user.positions.#{user.position}") %></td>
+          <td><%= user.active ? "Sim" : "Não" %></td>
+          <td>
+            <%= link_to user_path(user), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-male"></i>
+            <% end %>
+          </td>    
+          <td>
+            <%= link_to edit_user_path(user), class: "btn btn-warning btn-circle" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          </td> 
+          <td>
+            <%= link_to user_path(user), class: "btn btn-danger btn-circle", method: :delete, data: {confirm: "Tem certeza?"} do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>       
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    <div style="text-align: center;">
+      <%= will_paginate @users, renderer: BootstrapPagination::Rails, class: "pagination-lg", inner_window: 3 %>
+    </div>
+<!-- </div> -->

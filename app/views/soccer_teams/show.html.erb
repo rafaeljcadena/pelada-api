@@ -23,7 +23,7 @@
 
 	<tr>
 		<th>Vagas Disponíveis:</th>
-		<td><%= @soccer_team.vacancy_players %></td>
+		<td><%= @soccer_team.vacancy_users %></td>
 	</tr>
 
 	<tr>
@@ -51,26 +51,26 @@
       </tr>
     </thead>
     <tbody>
-      <% if @soccer_team.players.present? %>
-        <% @soccer_team.players.each do |player| %>
+      <% if @soccer_team.users.present? %>
+        <% @soccer_team.users.each do |user| %>
           <tr>
-            <td><%= player.nome %></td>
-            <td><%= player.email %></td>
-            <td><%= player.cell_phone %></td>
-            <td><%= t("model.player.positions.#{player.position}") %></td>
-            <td><%= player.active ? "Sim" : "Não" %></td>
+            <td><%= user.nome %></td>
+            <td><%= user.email %></td>
+            <td><%= user.cell_phone %></td>
+            <td><%= t("model.user.positions.#{user.position}") %></td>
+            <td><%= user.active ? "Sim" : "Não" %></td>
             <td>
-              <%= link_to player_path(player), class: "btn btn-primary btn-circle" do %>
+              <%= link_to user_path(user), class: "btn btn-primary btn-circle" do %>
                 <i class="fa fa-male"></i>
               <% end %>
             </td>    
             <td>
-              <%= link_to edit_player_path(player), class: "btn btn-warning btn-circle" do %>
+              <%= link_to edit_user_path(user), class: "btn btn-warning btn-circle" do %>
                 <i class="fa fa-edit"></i>
               <% end %>
             </td> 
             <td>
-              <%= link_to soccer_team_path(@soccer_team, from_soccer_team: true, player_id: player), class: "btn btn-danger btn-circle", data: {confirm: "Tem certeza?"} do %>
+              <%= link_to soccer_team_path(@soccer_team, from_soccer_team: true, user_id: user), class: "btn btn-danger btn-circle", data: {confirm: "Tem certeza?"} do %>
                 <i class="fa fa-trash-o"></i>
               <% end %>
             </td>       
@@ -83,6 +83,6 @@
     </tbody>
   </table>
     <div style="text-align: center;">
-      <%= will_paginate @players, renderer: BootstrapPagination::Rails, class: "pagination-lg", inner_window: 3 %>
+      <%= will_paginate @users, renderer: BootstrapPagination::Rails, class: "pagination-lg", inner_window: 3 %>
     </div>
 <!-- </div> -->

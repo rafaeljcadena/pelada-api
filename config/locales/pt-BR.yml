@@ -1,7 +1,7 @@
 pt-BR:
   hello: "Olá Mundo!"
   model:
-    player:
+    user:
       positions:
         atacante: Atacante
         goleiro: Goleiro

@@ -4,7 +4,7 @@
   }
 </style>
 
-<%= semantic_form_for @player, html:{class: "form-group"} do |f| %>
+<%= semantic_form_for @user, html:{class: "form-group"} do |f| %>
   <div class="form-group">
     <%= f.input :nome, input_html:{class: "form-control", placeholder: "Nome do Jogador"} %>
 
@@ -46,5 +46,5 @@ $(document).ready(function() {
     {placeholder: "Selecione o time" } 
     );
 });
-$('#player_birthdate').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
+$('#user_birthdate').inputmask('dd/mm/yyyy', {showMaskOnHover: false});
 </script>

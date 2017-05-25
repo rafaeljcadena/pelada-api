@@ -3,7 +3,7 @@ namespace :utils do
   task seed: :environment do
 
   	10.times do |i|
-  		Player.create!(
+  		User.create!(
   			nome: Faker::Name.name,
   			birthdate: Faker::Date.between_except(20.year.ago, 1.year.from_now, Date.today),
   			cpf: Faker::CPF.pretty,
@@ -12,7 +12,9 @@ namespace :utils do
   			position: Player.positions.sample,
   			cell_phone: Faker::PhoneNumber.cell_phone,
   			home_phone: Faker::PhoneNumber.phone_number,
-  			email: Faker::Internet.safe_email
+  			email: Faker::Internet.safe_email,
+        password: "12345678",
+        password_confirmation: "12345678"
 			)
 
   	end
