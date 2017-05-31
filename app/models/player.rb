@@ -15,8 +15,8 @@ class Player < ActiveRecord::Base
 
 	validates :position, inclusion: {in: Player.positions, allow_blank: true}
 
-	def is_active?
-		self.active = true if self.soccer_team_id
-	end
+	# def is_active?
+	# 	self.active = true if self.soccer_team_id
+	# end
 
 end

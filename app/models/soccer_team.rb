@@ -4,6 +4,11 @@ class SoccerTeam < ApplicationRecord
 	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id"
 	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
 
+
+  def can_sign_in?
+    return self.vacancy_users > 0
+  end
+
   def as_json(options=nil)
     {
     	team_name: team_name,
