@@ -1,4 +1,44 @@
 <p id="notice"><%= notice %></p>
+<h1>Dados do jogador <%= @user.nome %></h1>
+<table class="table">
+	<tr>
+		<th>Nome:</th>
+		<td><%= @user.nome %></td>
+	</tr>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+	<tr>
+		<th>Email:</th>
+		<td><%= @user.email %></td>
+	</tr>
+
+	<tr>
+		<th>Celular:</th>
+		<td><%= @user.cell_phone %></td>
+	</tr>
+
+	<tr>
+		<th>Telefone - Residência:</th>
+		<td><%= @user.home_phone %></td>
+	</tr>
+
+	<tr>
+		<th>Posição:</th>
+		<td><%= t("model.user.positions.#{@user.position}") %></td>
+	</tr>
+
+	<% if @user.active %>
+		<tr>
+			<th>Time atuante:</th>
+			<td><%= @user.soccer_team.team_name %></td>
+		</tr>
+	<% end %>
+
+	<tr>
+		<th>Descrição:</th>
+		<td><%= @user.descricao %></td>
+	</tr>
+
+
+</table>
+
+<%= link_to 'Editar', edit_user_path(@user), class: "btn btn-warning" %> <%= link_to 'Back', users_path, class: "btn btn-default" %>

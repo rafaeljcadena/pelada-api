@@ -5,6 +5,10 @@ class SoccerTeamsController < ApplicationController
   # GET /soccer_teams.json
   def index
     @soccer_teams = SoccerTeam.all.order(:team_name).paginate(page: params[:page], per_page: 15)
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@soccer_teams.as_json(), mode: :compat)}
+    end
   end
 
   # GET /soccer_teams/1
@@ -17,6 +21,11 @@ class SoccerTeamsController < ApplicationController
     end
     
     @users = @soccer_team.users.paginate(page: params[:page], per_page: 15).order(:nome)
+
+    respond_to do |format|
+      format.html
+      format.json {render json: Oj.dump(@soccer_team.as_json(), mode: :compat)}
+    end
 
   end
 
