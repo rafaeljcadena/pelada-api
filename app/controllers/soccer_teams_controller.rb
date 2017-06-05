@@ -19,6 +19,8 @@ class SoccerTeamsController < ApplicationController
       user.update(soccer_team_id: nil, active: false)
     end
     
+    binding.pry if Rails.env.development?
+
     @users = @soccer_team.users.paginate(page: params[:page], per_page: 15).order(:nome)
 
     respond_to do |format|

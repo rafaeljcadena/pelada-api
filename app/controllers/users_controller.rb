@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+
     respond_to do |format|
       format.html
       format.json {render json: Oj.dump(@user.as_json(), mode: :compat)}
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+
     @user.build_address
     @soccer_teams = SoccerTeam.all
   end
