@@ -1,5 +1,4 @@
 class Pelada < ApplicationRecord
-	has_one :address, dependent: :destroy
 	has_many :soccer_teams
 	# accepts_nested_attributes_for :soccer_teams
 	
@@ -9,9 +8,10 @@ class Pelada < ApplicationRecord
   def as_json(options=nil)
     {
     	title: title,
-    	begin: self.begin,
+    	begin: begin,
   		host_id: host_id,
   		guest_id: guest_id,
+      address_full: address_full,
   		lat: lat,
   		lng: lng,
   		created_at: created_at
