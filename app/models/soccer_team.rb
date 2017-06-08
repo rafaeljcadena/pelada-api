@@ -5,7 +5,7 @@ class SoccerTeam < ApplicationRecord
 	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
 
 
-
+  
 
 
 

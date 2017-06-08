@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
     respond_to do |format|
       format.html
       format.json {render json: Oj.dump(@user.as_json(), mode: :compat)}
@@ -104,7 +103,7 @@ class UsersController < ApplicationController
     end
 
     def set_available_soccer_teams
-      @soccer_teams = SoccerTeam.where('vacancy_players > ?', 0)
+      @soccer_teams = SoccerTeam.where('vacancy_users > ?', 0)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
