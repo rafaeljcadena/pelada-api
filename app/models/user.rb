@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   def as_json(options=nil)
     {
+      id: id,
       nome: nome,
       email: email,
       birthdate: birthdate,
