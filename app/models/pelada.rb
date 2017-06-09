@@ -12,8 +12,8 @@ class Pelada < ApplicationRecord
   		host_id: host_id,
   		guest_id: guest_id,
       address_full: address_full,
-  		lat: lat,
-  		lng: lng,
+  		lat: lat.round(6),
+  		lng: lng.round(6),
   		created_at: created_at
     }
   end
