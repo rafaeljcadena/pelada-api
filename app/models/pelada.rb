@@ -7,6 +7,7 @@ class Pelada < ApplicationRecord
 
   def as_json(options=nil)
     {
+      id: id,
     	title: title,
     	begin: self.begin,
   		host_id: host_id,
