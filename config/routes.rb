@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+  post "api/join_team", to: "api#join_team"
+  post "api/unjoin_team", to: "api#unjoin_team"
+
 end
