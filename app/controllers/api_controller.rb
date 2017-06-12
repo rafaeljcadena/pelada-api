@@ -60,7 +60,8 @@ class ApiController < ApplicationController
 
   def can_join_team?
   	@soccer_team = SoccerTeam.find(params[:user][:soccer_team_id])
-  	return @soccer_team.users.count > 0
+  	# return @soccer_team.users.count > 0
+  	return @soccer_team.vacancy_users > 0
   end
 
 end

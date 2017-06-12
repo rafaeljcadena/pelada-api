@@ -21,7 +21,7 @@ class User < ApplicationRecord
     if self.soccer_team_id
       soccer = self.soccer_team
       # soccer.vacancy_users = 11 - soccer.users.count
-      soccer.update(vacancy_users: 11 - soccer.users.count)
+      soccer.update(vacancy_users: (11 - soccer.users.count))
     end
   end
 
@@ -37,6 +37,7 @@ class User < ApplicationRecord
       cell_phone: cell_phone,
       home_phone: home_phone,
       descricao: descricao,
+      soccer_team_id: soccer_team_id,
       address: address.as_json(),
       created_at: created_at
     }
