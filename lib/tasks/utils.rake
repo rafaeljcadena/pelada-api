@@ -1,5 +1,5 @@
 namespace :utils do
-  desc "Creating Players"
+  desc "Creating Users"
   task seed: :environment do
 
   	10.times do |i|

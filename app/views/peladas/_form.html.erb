@@ -14,7 +14,7 @@
     <%= f.input :host_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "host_select"} %>
 
     <%= f.input :guest_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "guest_select"} %>
-    <%= f.input :address, as: :string, input_html:{onchange: "javascript:atualiza_mapa();", id: "pelada_address"} %>
+    <%= f.input :address_full, input_html:{onchange: "javascript:atualiza_mapa();", id: "pelada_address"} %>
     <%= f.input :lat, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-85.05115", "v-max" => "85", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
     <%= f.input :lng, as: :string, input_html: { data: {autonumeric: true, "v-min" => "-180", "v-max" => "180", "m-dec" => "8", "a-dec" => ",", "a-sep" => "." }, onchange: "updateMarker();"} %>
 

@@ -14,9 +14,8 @@ class SoccerTeamsController < ApplicationController
   # GET /soccer_teams/1
   # GET /soccer_teams/1.json
   def show
-
     if from_soccer_team?
-      user = @soccer_team.users.where(id: params[:user_id])
+      user = User.find(params[:user_id])
       user.update(soccer_team_id: nil, active: false)
     end
     

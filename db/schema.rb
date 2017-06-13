@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525023353) do
+ActiveRecord::Schema.define(version: 20170607233533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,21 +29,14 @@ ActiveRecord::Schema.define(version: 20170525023353) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
-  create_table "pelada_soccer_teams", force: :cascade do |t|
-    t.integer  "pelada_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pelada_id"], name: "index_pelada_soccer_teams_on_pelada_id", using: :btree
-  end
-
   create_table "peladas", force: :cascade do |t|
     t.string   "title"
     t.datetime "begin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "host_id"
     t.integer  "guest_id"
-    t.string   "address"
+    t.string   "address_full"
     t.decimal  "lat"
     t.decimal  "lng"
     t.index ["guest_id"], name: "index_peladas_on_guest_id", using: :btree
@@ -107,7 +100,6 @@ ActiveRecord::Schema.define(version: 20170525023353) do
 
   add_foreign_key "addresses", "players"
   add_foreign_key "addresses", "users"
-  add_foreign_key "pelada_soccer_teams", "peladas"
   add_foreign_key "players", "soccer_teams"
   add_foreign_key "users", "soccer_teams"
 end

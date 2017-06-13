@@ -4,8 +4,15 @@ class SoccerTeam < ApplicationRecord
 	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id"
 	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
 
+
+  
+
+
+
+
   def as_json(options=nil)
     {
+      id: id,
     	team_name: team_name,
     	vacancy_users: vacancy_users,
     	goals_scored: goals_scored,

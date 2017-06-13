@@ -23,6 +23,7 @@ class PeladasController < ApplicationController
   # GET /peladas/new
   def new
     @pelada = Pelada.new
+    # @pelada.build_address
   end
 
   # GET /peladas/1/edit
@@ -77,6 +78,6 @@ class PeladasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pelada_params
-      params.require(:pelada).permit(:title, :begin, :guest_id, :host_id, :address, :lat, :lng)
+      params.require(:pelada).permit(:title, :begin, :guest_id, :host_id, :address_full, :lat, :lng)
     end
 end
