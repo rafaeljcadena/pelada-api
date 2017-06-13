@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-	before_action :authenticate_user!
+	# before_action :authenticate_user!
 	# protect_from_forgery with: :null_session
   skip_before_filter :verify_authenticity_token, only: [:join_team, :unjoin_team]
 
@@ -20,7 +20,7 @@ class ApiController < ApplicationController
 	def join_team
 
 
-		binding.pry if Rails.env.development?
+		# binding.pry if Rails.env.development?
 		@user = User.find(params[:user][:id])
 
     respond_to do |format|

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :sign_in_a_team, :sign_out_a_team]
   before_action :set_available_soccer_teams, only: [:show, :edit, :update, :destroy]
+
   skip_before_action :verify_authenticity_token
 
   # GET /users
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
   def edit
 
     @user.build_address
-    @soccer_teams = SoccerTeam.all
+    # @soccer_teams = SoccerTeam.all
   end
 
   # POST /users
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        update_vacancy_soccer_team
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -58,6 +60,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        update_vacancy_soccer_team
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -71,29 +74,11 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+    update_vacancy_soccer_team
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def sign_in_a_team
-    respond_to do |format|
-    soccer_team = SoccerTeam.find(params[:soccer_team_id])
-
-      if ((soccer_team) && soccer_team.can_sign_in? )
-        @user.update(soccer_team_id: params[:soccer_team_id])
-        # format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        # format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def sign_out_a_team
-    
   end
 
   private
@@ -104,6 +89,13 @@ class UsersController < ApplicationController
 
     def set_available_soccer_teams
       @soccer_teams = SoccerTeam.where('vacancy_users > ?', 0)
+    end
+
+    def update_vacancy_soccer_team
+      if params[:user][:soccer_team_id]
+        soccer = SoccerTeam.find(params[:user][:soccer_team_id])
+        soccer.update_vacancy_soccer_team
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

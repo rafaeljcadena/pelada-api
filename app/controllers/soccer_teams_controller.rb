@@ -17,6 +17,7 @@ class SoccerTeamsController < ApplicationController
     if from_soccer_team?
       user = User.find(params[:user_id])
       user.update(soccer_team_id: nil, active: false)
+      @soccer_team.update_vacancy_soccer_team
     end
     
     @users = @soccer_team.users.paginate(page: params[:page], per_page: 15).order(:nome)

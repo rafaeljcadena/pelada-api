@@ -4,10 +4,9 @@ class SoccerTeam < ApplicationRecord
 	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id"
 	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
 
-
-  
-
-
+  def update_vacancy_soccer_team
+      self.update(vacancy_users: (11 - self.users.count))
+  end
 
 
   def as_json(options=nil)

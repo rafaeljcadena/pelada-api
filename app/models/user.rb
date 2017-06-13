@@ -5,9 +5,6 @@ class User < ApplicationRecord
 	before_save :is_active
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  after_save :update_vacancy_soccer_team
-  after_update :update_vacancy_soccer_team
-  # before_update :update_vacancy_soccer_team
 
   validate :soccer_team_id, if: :can_sign_in?
 
@@ -17,13 +14,13 @@ class User < ApplicationRecord
     end
   end
 
-  def update_vacancy_soccer_team
-    if self.soccer_team_id
-      soccer = self.soccer_team
-      # soccer.vacancy_users = 11 - soccer.users.count
-      soccer.update(vacancy_users: (11 - soccer.users.count))
-    end
-  end
+  # def update_vacancy_soccer_team
+  #   if self.soccer_team_id
+  #     soccer = SoccerTeam.find(self.soccer_team_id)
+  #     # soccer.vacancy_users = 11 - soccer.users.count
+  #     soccer.update(vacancy_users: (11 - soccer.users.count))
+  #   end
+  # end
 
   def as_json(options=nil)
     {
