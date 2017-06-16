@@ -70,7 +70,7 @@
               <% end %>
             </td> 
             <td>
-              <%= link_to soccer_team_path(@soccer_team, from_soccer_team: true, user_id: user), class: "btn btn-danger btn-circle", data: {confirm: "Tem certeza?"} do %>
+              <%= link_to removing_user_from_team_soccer_team_path(@soccer_team, user_id: user), class: "btn btn-danger btn-circle", data: {confirm: "Tem certeza?"} do %>
                 <i class="fa fa-trash-o"></i>
               <% end %>
             </td>       

@@ -1,5 +1,5 @@
 class SoccerTeamsController < ApplicationController
-  before_action :set_soccer_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_soccer_team, only: [:show, :edit, :update, :destroy, :removing_user_from_team]
 
   # GET /soccer_teams
   # GET /soccer_teams.json
@@ -26,7 +26,22 @@ class SoccerTeamsController < ApplicationController
       format.html
       format.json {render json: Oj.dump(@soccer_team.as_json(), mode: :compat)}
     end
+  end
 
+  def removing_user_from_team
+      user = User.find(params[:user_id])
+      
+      # @soccer_team.update_vacancy_soccer_team
+      respond_to do |format|
+        if user.update(soccer_team_id: nil, active: false)
+          @soccer_team.update_vacancy_soccer_team
+          format.html { redirect_to @soccer_team, notice: 'Time atualizado com sucesso!' }
+          # format.json { render :show, status: :ok, location: @soccer_team }
+        else
+          format.html { render :show }
+          format.json { render json: @soccer_team.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   # GET /soccer_teams/new

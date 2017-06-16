@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  belongs_to :soccer_team
-	has_one :address
-	accepts_nested_attributes_for :address
-	before_save :is_active
+  has_one :address
+  accepts_nested_attributes_for :address
+  before_save :is_active
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :soccer_team
   validate :soccer_team_id, if: :can_sign_in?
 
   def can_sign_in?
@@ -13,6 +13,13 @@ class User < ApplicationRecord
       errors.add(:soccer_team_id, "#{soccer_team.team_name} ja esta completo. Escolha outro.") unless self.soccer_team.vacancy_users > 0
     end
   end
+
+    @@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
+  def self.positions
+    @@positions
+  end
+
+  validates :position, inclusion: {in: User.positions, allow_blank: true}
 
   # def update_vacancy_soccer_team
   #   if self.soccer_team_id
@@ -35,7 +42,6 @@ class User < ApplicationRecord
       home_phone: home_phone,
       descricao: descricao,
       soccer_team_id: soccer_team_id,
-      soccer_team_name: soccer_team.team_name,
       address: address.as_json(),
       created_at: created_at
     }
