@@ -37,7 +37,7 @@ class User < ApplicationRecord
       birthdate: birthdate,
       cpf: cpf,
       active: active,
-      position: position,
+      position: I18n.t("model.user.positions.#{position}"),
       cell_phone: cell_phone,
       home_phone: home_phone,
       descricao: descricao,

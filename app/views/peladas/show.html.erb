@@ -31,12 +31,20 @@
       <tr>
         <td><%= @pelada.host.team_name %></td>
         <td></td>
-        <td></td>
+          <td style="text-align: center;">
+            <%= link_to soccer_team_path(@pelada.host), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-male"></i>
+            <% end %>
+          </td>
       </tr>
       <tr>
         <td><%= @pelada.guest.team_name %></td>
         <td></td>
-        <td></td>
+          <td style="text-align: center;">
+            <%= link_to soccer_team_path(@pelada.guest), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-male"></i>
+            <% end %>
+          </td>
       </tr>
 
     </tbody>
