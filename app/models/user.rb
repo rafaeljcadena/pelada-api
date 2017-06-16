@@ -35,6 +35,7 @@ class User < ApplicationRecord
       home_phone: home_phone,
       descricao: descricao,
       soccer_team_id: soccer_team_id,
+      soccer_team_name: soccer_team.team_name,
       address: address.as_json(),
       created_at: created_at
     }
