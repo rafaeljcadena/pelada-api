@@ -16,7 +16,7 @@ class User < ApplicationRecord
     end
   end
 
-    @@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
+  @@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
   def self.positions
     @@positions
   end

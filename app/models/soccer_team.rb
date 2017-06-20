@@ -3,11 +3,15 @@ class SoccerTeam < ApplicationRecord
 	has_many :users, dependent: :destroy
 	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id"
 	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
+  before_create :set_vacancy_users
 
   def update_vacancy_soccer_team
       self.update(vacancy_users: (11 - self.users.count))
   end
 
+  def set_vacancy_users
+    self.vacancy_users = 11
+  end
 
   def as_json(options=nil)
     {
