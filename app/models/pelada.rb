@@ -19,7 +19,7 @@ class Pelada < ApplicationRecord
       address_full: address_full,
   		lat: lat.round(6),
   		lng: lng.round(6),
-  		created_at: created_at.strftime("%d/%m/%Y %H:%M" || default)
+  		created_at: created_at
     }
   end
 
