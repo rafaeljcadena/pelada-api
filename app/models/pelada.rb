@@ -9,7 +9,7 @@ class Pelada < ApplicationRecord
     {
       id: id,
     	title: title,
-    	begin: self.begin,
+    	begin: self.begin.strftime("%d/%m/%Y" || default),
       # host_id: host_id,
   		# host_team_name: host.team_name,
       host: host.as_json(),
@@ -19,7 +19,7 @@ class Pelada < ApplicationRecord
       address_full: address_full,
   		lat: lat.round(6),
   		lng: lng.round(6),
-  		created_at: created_at
+  		created_at: created_at.strftime("%d/%m/%Y %H:%M" || default)
     }
   end
 

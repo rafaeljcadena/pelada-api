@@ -1,12 +1,14 @@
 class User < ApplicationRecord
-  has_one :address
-  accepts_nested_attributes_for :address
+  # has_one :address
+  # accepts_nested_attributes_for :address
   before_save :is_active
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :soccer_team
   validate :soccer_team_id, if: :can_sign_in?
+
+  validates :nome, :cell_phone, presence: true
 
   def can_sign_in?
     if self.soccer_team_id
@@ -42,7 +44,7 @@ class User < ApplicationRecord
       home_phone: home_phone,
       descricao: descricao,
       soccer_team_id: soccer_team_id,
-      address: address.as_json(),
+      # address: address.as_json(),
       created_at: created_at
     }
   end

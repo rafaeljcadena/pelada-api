@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     end
 
     def update_vacancy_soccer_team
-      if (params[:user][:soccer_team_id] && (params[:user][:soccer_team_id].present?))
+      if (params[:user] && (params[:user][:soccer_team_id].present?))
         soccer = SoccerTeam.find(params[:user][:soccer_team_id])
         soccer.update_vacancy_soccer_team
       end
