@@ -1,9 +1,10 @@
 class SoccerTeam < ApplicationRecord
 	# has_many :players, dependent: :destroy
 	has_many :users, dependent: :destroy
-	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id"
-	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id"
+	has_many :peladas_host, class_name: "Pelada", foreign_key: "host_id", dependent: :destroy
+	has_many :peladas_guest, class_name: "Pelada", foreign_key: "guest_id", dependent: :destroy
   before_create :set_vacancy_users
+  # after_save :update_vacancy_soccer_team
 
   def update_vacancy_soccer_team
       self.update(vacancy_users: (11 - self.users.count))

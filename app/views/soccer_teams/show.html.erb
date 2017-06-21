@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 <h1>Dados do Time <%= @soccer_team.team_name %></h1>
 <table class="table">
+  <tr>
+    <th>ID:</th>
+    <td><%= @soccer_team.id %></td>
+  </tr>
+
 	<tr>
 		<th>Nome do Time:</th>
 		<td><%= @soccer_team.team_name %></td>
