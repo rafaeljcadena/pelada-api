@@ -5,11 +5,11 @@
     <thead>
       <tr>
         <!-- <th>Posição</th> -->
-        <th>Nome</th>
-        <th>Quantidade de Jogadores</th>
+        <th>ID</th>
+        <th colspan="2">Nome</th>
+        <th>Qtd Jogadores</th>
         <th>Cartões Amarelos</th>
         <th>Cartões Vermelhos</th>
-        <th>Faltas Cometidas</th>
         <th>Saldo de Gols</th>
         <th colspan="3" style="text-align: center;">Ações</th>
       </tr>
@@ -18,11 +18,11 @@
       <% @soccer_teams.each do |soccer_team| %>
         <tr>
           <!-- <td><%#= player.nome %></td> -->
-          <td><%= soccer_team.team_name %></td>
+          <td><%= soccer_team.id %></td>
+          <td colspan="2"><%= soccer_team.team_name %></td>
           <td><%= soccer_team.users.count %></td>
           <td><%= soccer_team.red_cards %></td>
           <td><%= soccer_team.yellow_cards %></td>
-          <td><%= soccer_team.fouls_commited %></td>
           <td><%= soccer_team.goals_scored %></td>
           <td>
             <%= link_to soccer_team_path(soccer_team), class: "btn btn-primary btn-circle" do %>
