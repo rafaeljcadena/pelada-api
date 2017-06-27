@@ -27,15 +27,15 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.build_address
+    # @user.build_address
     @soccer_teams = SoccerTeam.all
   end
 
   # GET /users/1/edit
   def edit
 
-    @user.build_address
-    # @soccer_teams = SoccerTeam.all
+    # @user.build_address
+    @soccer_teams = SoccerTeam.all
   end
 
   # POST /users
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     end
 
     def update_vacancy_soccer_team
-      if params[:user][:soccer_team_id]
+      if (params[:user] && (params[:user][:soccer_team_id].present?))
         soccer = SoccerTeam.find(params[:user][:soccer_team_id])
         soccer.update_vacancy_soccer_team
       end
@@ -100,6 +100,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:nome, :birthdate, :email, :cpf, :descricao, :active, :position, :cell_phone, :soccer_team_id, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
+      params.require(:user).permit(:nome, :birthdate, :email, :cpf, :password, :password_confirmation, :descricao, :active, :position, :cell_phone, :soccer_team_id, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
     end
 end

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_one :address
-  accepts_nested_attributes_for :address
+  # has_one :address
+  # accepts_nested_attributes_for :address
   before_save :is_active
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -8,13 +8,15 @@ class User < ApplicationRecord
   belongs_to :soccer_team
   validate :soccer_team_id, if: :can_sign_in?
 
+  validates :nome, :cell_phone, presence: true
+
   def can_sign_in?
     if self.soccer_team_id
       errors.add(:soccer_team_id, "#{soccer_team.team_name} ja esta completo. Escolha outro.") unless self.soccer_team.vacancy_users > 0
     end
   end
 
-    @@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
+  @@positions = ["atacante", "goleiro", "zagueiro", "lateral_esquerdo", "lateral_direito"]
   def self.positions
     @@positions
   end
@@ -37,12 +39,12 @@ class User < ApplicationRecord
       birthdate: birthdate,
       cpf: cpf,
       active: active,
-      position: position,
+      position: I18n.t("model.user.positions.#{position}"),
       cell_phone: cell_phone,
       home_phone: home_phone,
       descricao: descricao,
       soccer_team_id: soccer_team_id,
-      address: address.as_json(),
+      # address: address.as_json(),
       created_at: created_at
     }
   end

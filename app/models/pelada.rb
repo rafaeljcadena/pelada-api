@@ -9,7 +9,7 @@ class Pelada < ApplicationRecord
     {
       id: id,
     	title: title,
-    	begin: self.begin,
+    	begin: self.begin.strftime("%d/%m/%Y" || default),
       # host_id: host_id,
   		# host_team_name: host.team_name,
       host: host.as_json(),

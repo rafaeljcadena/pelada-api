@@ -14,4 +14,13 @@ pt-BR:
       begin: Início
       guest_id: Time Convidado
       host_id: Time da Casa
+  time:
+    am: ''
+    format:
+      default: ! '%a, %d de %B de %Y, %H:%M:%S %z'
+      long: ! '%d de %B de %Y, %H:%M'
+      short: ! '%d de %B, %H:%M'
+      format_us_date: '%m/%d/%y %H:%M'
+      format_br_date: '%d/%m/%y %H:%M'
+      month_year: ! '%B/%Y'
       

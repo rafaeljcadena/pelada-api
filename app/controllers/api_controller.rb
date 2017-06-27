@@ -1,21 +1,23 @@
 class ApiController < ApplicationController
-	# before_action :authenticate_user!
+	skip_before_action :authenticate_user!, only: [:sign_in_user]
 	# protect_from_forgery with: :null_session
-  skip_before_filter :verify_authenticity_token, only: [:join_team, :unjoin_team]
+  skip_before_filter :verify_authenticity_token, only: [:sign_in_user, :join_team, :unjoin_team]
 
 
 
-	def usuarios
-		
+	def sign_in_user
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save
+        # format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json {render json: Oj.dump(@user.as_json(), mode: :compat)}
+      else
+        # format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
 	end
 
-	def peladas
-		
-	end
-
-	def soccer_teams
-		
-	end
 
 	def join_team
 
@@ -56,6 +58,10 @@ class ApiController < ApplicationController
 
   def unjoin_params
     params.require(:user).permit(:id)
+  end
+
+  def user_params
+    params.require(:user).permit(:nome, :birthdate, :email, :cpf, :password, :password_confirmation, :descricao, :active, :position, :cell_phone, :soccer_team_id, :home_phone, address_attributes: [:street, :complement, :city, :cep, :state])
   end
 
   def can_join_team?

@@ -8,12 +8,12 @@
   <div class="form-group">
     <%= f.input :team_name, input_html:{class: "form-control", placeholder: "Nome do Time"} %>
 
-    <%= f.input :vacancy_users, as: :string,input_html:{class: "form-control", placeholder: "Vagas disponíveis"} %>
+    <%#= f.input :vacancy_users, as: :string,input_html:{class: "form-control", placeholder: "Vagas disponíveis"} %>
 
-    <%= f.input :open_for_subscriptions, as: :boolean, input_html:{} %>
+    <%#= f.input :open_for_subscriptions, as: :boolean, input_html:{} %>
     <br>
     <%= f.action :submit, label: "Criar Time", as: :button, button_html: {class: "btn btn-success", id: "btn_success", style: "padding: 8px;"} %>
-    <%= link_to 'Back', players_path, class: "btn btn-default" %>
+    <%= link_to 'Back', :back, class: "btn btn-default" %>
 
   </div>
 <% end %>

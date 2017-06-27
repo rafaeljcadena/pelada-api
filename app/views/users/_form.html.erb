@@ -10,6 +10,12 @@
 
     <%= f.input :email, input_html:{class: "form-control", placeholder: "E-mail"} %>
 
+    <%= f.input :password, input_html:{class: "form-control", placeholder: "Senha"} %>
+
+    <%= f.input :password_confirmation, input_html:{class: "form-control", placeholder: "Confirme sua Senha"} %>
+
+
+
 
     <%= f.input :birthdate, as: :string,input_html:{class: "form-control", placeholder: "Data de Nascimento"} %>
 
@@ -17,18 +23,20 @@
 
     <%= f.input :cell_phone, as: :string,input_html:{class: "form-control", placeholder: "Celular"} %>
 
-    <%= f.input :home_phone, as: :string,input_html:{class: "form-control", placeholder: "Residencial"} %>
+    <%#= f.input :home_phone, as: :string,input_html:{class: "form-control", placeholder: "Residencial"} %>
 
-    <%= f.semantic_fields_for :address do |address| %>
+    <%#= f.semantic_fields_for :address do |address| %>
 
-    <%= address.input :cep, as: :string, input_html:{class: "form-control", placeholder: "CEP"} %>
-    <%= address.input :street, as: :string, input_html:{class: "form-control", placeholder: "Rua"} %>
-    <%= address.input :complement, as: :string, input_html:{class: "form-control", placeholder: "Complemento"} %>
-    <%= address.input :city, as: :string, input_html:{class: "form-control", placeholder: "Cidade"} %>
-    <%= address.input :state, as: :string, input_html:{class: "form-control", placeholder: "Estado"} %>
+    <%#= address.input :cep, as: :string, input_html:{class: "form-control", placeholder: "CEP"} %>
+    <%#= address.input :street, as: :string, input_html:{class: "form-control", placeholder: "Rua"} %>
+    <%#= address.input :complement, as: :string, input_html:{class: "form-control", placeholder: "Complemento"} %>
+    <%#= address.input :city, as: :string, input_html:{class: "form-control", placeholder: "Cidade"} %>
+    <%#= address.input :state, as: :string, input_html:{class: "form-control", placeholder: "Estado"} %>
 
-    <% end %>
-    <%= f.input :soccer_team_id, as: :select, collection: @soccer_teams.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "soccer_team_select"} %>
+    <%# end %>
+    <%#= f.input :soccer_team_id, as: :select, collection: @soccer_teams.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "soccer_team_select"} %>
+
+    <%= f.input :soccer_team_id, as: :select, collection: SoccerTeam.all.map{|p| [p.team_name, p.id]}, input_html:{class: "form-control", id: "soccer_team_select"} %>
     <%= f.input :position, collection: User.positions.map{|p| [t("model.user.positions.#{p}"), p]}, input_html:{class: "form-control", placeholder: "Usar o Select2", id: "position_select"} %>
 
     <%= f.input :descricao, input_html:{class: "form-control"} %>

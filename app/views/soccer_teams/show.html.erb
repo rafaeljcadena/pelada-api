@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 <h1>Dados do Time <%= @soccer_team.team_name %></h1>
 <table class="table">
+  <tr>
+    <th>ID:</th>
+    <td><%= @soccer_team.id %></td>
+  </tr>
+
 	<tr>
 		<th>Nome do Time:</th>
 		<td><%= @soccer_team.team_name %></td>
@@ -32,7 +37,7 @@
 	</tr>
 </table>
 
-<%= link_to 'Editar', edit_soccer_team_path(@soccer_team), class: "btn btn-warning" %> <%= link_to 'Back', soccer_teams_path, class: "btn btn-default" %>
+<%= link_to 'Editar', edit_soccer_team_path(@soccer_team), class: "btn btn-warning" %> <%= link_to 'Back', :back, class: "btn btn-default" %>
 
 <hr>
 
